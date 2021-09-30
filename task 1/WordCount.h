@@ -1,6 +1,5 @@
 #include <iostream>
 #include <fstream>
-#include <set>
 #include <map>
 #include <list>
 
@@ -9,9 +8,10 @@
 
 class WordCount {
 public:
-    // Opens file with name $input and does some shit
+    //  Opens file with name $input, counts frequencies of words in the file,
+    //  then writes result into file with name $output in CSV format
     WordCount(const char* input, const char* output);
-    
+
 private:
     const char* input_file_;
     const char* output_file_;

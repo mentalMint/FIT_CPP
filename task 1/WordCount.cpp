@@ -13,7 +13,6 @@ void WordCount::ReadInputFile() {
     if (!in) {
         printf("open input file error\n");
         abort();
-//        throw "open input file error\n";
     }
     
     std::string bar;
@@ -23,11 +22,6 @@ void WordCount::ReadInputFile() {
     }
     
     in.close();
-}
-
-static bool ComparePairs(const std::pair<std::string, int> &p1,
-                         const std::pair<std::string, int> &p2) {
-    return p1.second > p2.second;
 }
 
 void WordCount::WriteOutputFile() {
@@ -42,7 +36,11 @@ void WordCount::WriteOutputFile() {
     for (auto const &iterator : word_dict_) {
         word_list.insert(word_list.end(), iterator);
     }
-    word_list.sort(ComparePairs);
+    word_list.sort([]
+                           (const std::pair<std::string, int> &p1,
+                            const std::pair<std::string, int> &p2) {
+        return p1.second > p2.second;
+    });
     
     for (auto const &iterator : word_list) {
         double frequency = ((double) iterator.second / (double) word_count_) * 100;
