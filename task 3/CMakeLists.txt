@@ -3,4 +3,4 @@ project(factory)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(factory main.cpp WorkflowExecutor.cpp WorkflowExecutor.h WorkflowParser.cpp WorkflowParser.h ReadFile.h BlockFactory.h Sort.h IBlockMaker.h BlockMaker.h Sort.cpp ReadFile.cpp)
+add_executable(factory main.cpp WorkflowExecutor.cpp WorkflowExecutor.h WorkflowParser.cpp WorkflowParser.h ReadFile.h BlockFactory.h Sort.h IBlockMaker.h BlockMaker.h Sort.cpp ReadFile.cpp UndefinedBlock.h WrongWorkflowDescription.h InsufficientArguments.h Exception.h WriteFile.cpp WriteFile.h Grep.cpp Grep.h)

@@ -1,16 +1,20 @@
 #ifndef FACTORY_BLOCKMAKER_H
 #define FACTORY_BLOCKMAKER_H
 
-#include "IBlockMaker.h"
+#include <iostream>
 #include "BlockFactory.h"
-#include "Sort.h"
+#include "IBlockMaker.h"
 
 namespace Common {
     template<typename T>
     class BlockMaker : public IBlockMaker {
     public:
-        BlockMaker(const std::string &key) {
-            getInstance().RegisterMaker(key, this);
+        explicit BlockMaker(const std::string &key) {
+            try {
+                BlockFactory::getInstance().RegisterMaker(key, this);
+            } catch (Exception &ex) {
+                std::cerr << "Error : " << ex.what() << std::endl;
+            }
         }
         
         Block* Create(std::vector<std::string> parameters) const override{

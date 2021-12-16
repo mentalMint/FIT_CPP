@@ -1,6 +1,9 @@
 #ifndef FACTORY_IBLOCKMAKER_H
 #define FACTORY_IBLOCKMAKER_H
 
+#include <vector>
+#include <string>
+
 namespace Common {
     class Block;
     

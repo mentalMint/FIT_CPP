@@ -2,17 +2,14 @@
 #define FACTORY_READFILE_H
 
 #include "Block.h"
-#include "BlockMaker.h"
 
 namespace SimpleBlocks {
     class ReadFile : public Common::Block {
     private:
         std::vector<std::string> _parameters;
-    
-    
+        
     public:
-        ReadFile(std::vector<std::string> parameters) : _parameters(parameters) {
-        };
+        explicit ReadFile(std::vector<std::string> parameters) : _parameters(parameters) {};
         
         std::list<std::string>
         execute(const std::list<std::string> &text, const std::vector<std::string> &args) override;
