@@ -2,7 +2,7 @@
 #define FACTORY_WRITEFILE_H
 
 
-#include "Block.h"
+#include "../Common/Block.h"
 
 namespace SimpleBlocks {
     class WriteFile : public Common::Block {

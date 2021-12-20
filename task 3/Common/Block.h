@@ -4,7 +4,6 @@
 #include <string>
 #include <list>
 #include "BlockMaker.h"
-#include "Exception.h"
 
 namespace Common {
     enum class BlockType {

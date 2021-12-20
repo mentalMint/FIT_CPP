@@ -1,11 +1,11 @@
 #ifndef FACTORY_WORKFLOWEXECUTOR_H
 #define FACTORY_WORKFLOWEXECUTOR_H
 
-#include <iostream>
+#include <fstream>
 
 class WorkflowExecutor {
 public:
-    static void executeWorkflow(std::istream &in);
+    void executeWorkflow(std::ifstream &in);
 };
 
 

@@ -1,24 +1,24 @@
-#include "WriteFile.h"
+#include "Dump.h"
 #include <fstream>
 #include "../Exceptions/WrongNumberOfArguments.h"
 #include "../Exceptions/FileOpeningFail.h"
 
 namespace SimpleBlocks {
-    static Common::BlockMaker<WriteFile> maker("writefile");
+    static Common::BlockMaker<Dump> maker("dump");
     
     std::list<std::string>
-    WriteFile::execute(const std::list<std::string> &text, const std::vector<std::string> &args) {
+    Dump::execute(const std::list<std::string> &text, const std::vector<std::string> &args) {
         if (args.empty()) {
-            throw Exceptions::WrongNumberOfArguments("insufficient arguments for writefile");
+            throw Exceptions::WrongNumberOfArguments("insufficient arguments for dump");
         } else if (args.size() > 1) {
-            throw Exceptions::WrongNumberOfArguments("too much arguments for writefile");
+            throw Exceptions::WrongNumberOfArguments("too much arguments for dump");
         }
-    
+        
         std::ofstream output(args[0], std::ofstream::trunc);
         if (!output) {
             throw Exceptions::FileOpeningFail("output file opening failed");
         }
-    
+        
         for (const auto& word : text) {
             output << word;
             if (word != "\n") {
@@ -26,11 +26,10 @@ namespace SimpleBlocks {
             }
         }
         
-        std::list<std::string> newText;
-        return newText;
+        return text;
     }
     
-    Common::BlockType WriteFile::getType() {
-        return Common::BlockType::OUT;
+    Common::BlockType Dump::getType() {
+        return Common::BlockType::INOUT;
     }
 }

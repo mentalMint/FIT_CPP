@@ -1,4 +1,5 @@
 #include "Sort.h"
+#include "../Exceptions/WrongNumberOfArguments.h"
 
 namespace SimpleBlocks {
     static Common::BlockMaker<Sort> maker("sort");
@@ -18,7 +19,7 @@ namespace SimpleBlocks {
     
     std::list<std::string> Sort::execute(const std::list<std::string> &text, const std::vector<std::string> &args) {
         if (!args.empty()) {
-            throw Exception("too much arguments for sort");
+            throw Exceptions::WrongNumberOfArguments("too much arguments for sort");
         }
         std::list<std::string> newText = text;
         newText.sort(compareNoCase);

@@ -10,15 +10,11 @@ namespace Common {
     class BlockMaker : public IBlockMaker {
     public:
         explicit BlockMaker(const std::string &key) {
-            try {
-                BlockFactory::getInstance().RegisterMaker(key, this);
-            } catch (Exception &ex) {
-                std::cerr << "Error : " << ex.what() << std::endl;
-            }
+            BlockFactory::getInstance().RegisterMaker(key, this);
         }
         
-        Block* Create(std::vector<std::string> parameters) const override{
-            return new T(parameters);
+        std::shared_ptr<Block> Create(std::vector<std::string> parameters) const override {
+            return std::make_shared<T>(parameters);
         }
     };
 }

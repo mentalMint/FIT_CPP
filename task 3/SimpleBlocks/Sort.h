@@ -1,7 +1,7 @@
 #ifndef FACTORY_SORT_H
 #define FACTORY_SORT_H
 
-#include "Block.h"
+#include "../Common/Block.h"
 
 namespace SimpleBlocks {
     class Sort : public Common::Block {

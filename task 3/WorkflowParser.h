@@ -4,11 +4,12 @@
 #include <string>
 #include <list>
 #include <vector>
+#include <fstream>
 #include <iostream>
 
 class WorkflowParser {
 public:
-    std::list<std::pair<std::string, std::vector<std::string>>> getBlocks(std::istream &in);
+    std::list<std::pair<std::string, std::vector<std::string>>> getBlocks(std::ifstream &in);
 };
 
 

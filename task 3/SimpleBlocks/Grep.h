@@ -1,15 +1,15 @@
-#ifndef FACTORY_READFILE_H
-#define FACTORY_READFILE_H
+#ifndef FACTORY_GREP_H
+#define FACTORY_GREP_H
 
 #include "../Common/Block.h"
 
 namespace SimpleBlocks {
-    class ReadFile : public Common::Block {
+    class Grep : public Common::Block {
     private:
         std::vector<std::string> _parameters;
-        
+    
     public:
-        explicit ReadFile(std::vector<std::string> parameters) : _parameters(parameters) {};
+        explicit Grep(std::vector<std::string> parameters) : _parameters(parameters) {};
         
         std::list<std::string>
         execute(const std::list<std::string> &text, const std::vector<std::string> &args) override;
@@ -18,4 +18,5 @@ namespace SimpleBlocks {
     };
 }
 
-#endif //FACTORY_READFILE_H
+
+#endif //FACTORY_GREP_H

@@ -1,6 +1,7 @@
 #ifndef FACTORY_IBLOCKMAKER_H
 #define FACTORY_IBLOCKMAKER_H
 
+#include <memory>
 #include <vector>
 #include <string>
 
@@ -9,7 +10,7 @@ namespace Common {
     
     class IBlockMaker {
     public:
-        virtual Block* Create(std::vector<std::string> parameters) const = 0;
+        virtual std::shared_ptr<Block> Create(std::vector<std::string> parameters) const = 0;
         
         virtual ~IBlockMaker() {
         }

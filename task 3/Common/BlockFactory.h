@@ -4,7 +4,8 @@
 #include <map>
 #include "Block.h"
 #include "IBlockMaker.h"
-#include "Exception.h"
+#include "../Exceptions/UndefinedBlock.h"
+#include "../Exceptions/RegisteredBlock.h"
 
 namespace Common {
     class BlockFactory {
@@ -18,15 +19,15 @@ namespace Common {
         
         void RegisterMaker(const std::string &key, IBlockMaker* maker) {
             if (_makers.find(key) != _makers.end()) {
-                throw Exception("trying to register registered block");
+                throw Exceptions::RegisteredBlock("trying to register registered block");
             }
             _makers[key] = maker;
         }
         
-        Block* Create(std::pair<std::string, std::vector<std::string>> block) const {
+        std::shared_ptr<Block> Create(const std::pair<std::string, std::vector<std::string>>& block) const {
             auto i = _makers.find(block.first);
             if (i == _makers.end()) {
-                throw Exception("undefined block");
+                throw Exceptions::UndefinedBlock();
             }
             IBlockMaker* maker = i->second;
             return maker->Create(block.second);

@@ -1,35 +1,41 @@
 #include "ReadFile.h"
 #include <fstream>
+#include "../Exceptions/WrongNumberOfArguments.h"
+#include "../Exceptions/FileOpeningFail.h"
 
 namespace SimpleBlocks {
     static Common::BlockMaker<ReadFile> maker("readfile");
     
     std::list<std::string> ReadFile::execute(const std::list<std::string> &text, const std::vector<std::string> &args) {
         if (args.empty()) {
-            throw Exception("insufficient arguments for readfile");
+            throw Exceptions::WrongNumberOfArguments("insufficient arguments for readfile");
         } else if (args.size() > 1) {
-            throw Exception("too much arguments for readfile");
+            throw Exceptions::WrongNumberOfArguments("too much arguments for readfile");
         }
         
         std::fstream input(args[0]);
+        if (!input) {
+            throw Exceptions::FileOpeningFail("input file opening failed");
+        }
+        
         std::string line;
         std::list<std::string> newText;
-        while (std::getline(input, line, '\n')) {
+        while (std::getline(input, line)) {
             std::string delimiter = " ";
             size_t delimiterPosition = line.find(delimiter);
-            std::string token = "";
-            while (line != "\0") {
-                if (delimiterPosition != line.npos) {
+            std::string token;
+            while (!line.empty()) {
+                if (delimiterPosition != std::string::npos) {
                     token = line.substr(0, delimiterPosition);
                     line.erase(0, delimiterPosition + delimiter.length());
                     delimiterPosition = line.find(delimiter);
                 } else {
                     token = line;
-                    line = "\0";
+                    line = "";
                 }
                 newText.push_back(token);
             }
-            newText.push_back("\n");
+            newText.emplace_back("\n");
         }
         return newText;
     }
