@@ -1,5 +1,6 @@
 #include "WorkflowParser.h"
 #include <map>
+#include <iostream>
 #include "Exceptions/WrongWorkflowDescription.h"
 
 std::map<int, std::pair<std::string, std::vector<std::string>>> getBlocksDescription(std::ifstream &in) {
