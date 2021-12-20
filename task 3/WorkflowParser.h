@@ -5,7 +5,6 @@
 #include <list>
 #include <vector>
 #include <fstream>
-#include <iostream>
 
 class WorkflowParser {
 public:

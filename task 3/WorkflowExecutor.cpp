@@ -43,7 +43,6 @@ void WorkflowExecutor::executeWorkflow(std::ifstream &in) {
     std::list<std::pair<std::shared_ptr<Common::Block>, std::vector<std::string>>> blockObjects;
     for (const auto &block : blocks) {
         auto blockObject = Common::BlockFactory::getInstance().Create(block);
-//            Common::Block* blockObject = Common::BlockFactory::getInstance().Create(block);
         blockObjects.emplace_back(blockObject, block.second);
     }
     checkBlocks(blockObjects);
