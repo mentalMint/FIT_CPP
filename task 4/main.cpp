@@ -1,16 +1,11 @@
 #include <iostream>
-#include "TicTacToeView.h"
-
-void pause();
+#include "Controller.h"
 
 int main() {
-    TicTacToeView game1;
-    game1.run();
-    pause();
-}
-
-void pause() {
-    char end;
-    std::cout << "\nPress any key followed by ENTER to continue...";
-    std::cin >> end;
+    Controller game;
+    try {
+        game.runGame();
+    } catch (std::exception &exception) {
+        std::cerr << "Error: " << exception.what() << std::endl;
+    }
 }
