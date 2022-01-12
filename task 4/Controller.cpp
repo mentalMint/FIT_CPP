@@ -10,7 +10,6 @@
 void Controller::runGame() {
     std::cout << "Would you like to be the 1'st or the 2'nd?\nType 1 or 2:";
     size_t humansTurn;
-    std::cin >> humansTurn;
     do {
         while (!(std::cin >> humansTurn)) {
             std::cout << "INCORRECT INPUT TYPE\nTry again:";
